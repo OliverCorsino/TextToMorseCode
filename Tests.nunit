@@ -1,0 +1,11 @@
+<NUnitProject>
+  <Settings activeconfig="Debug"/>
+  <Config name="Debug">
+    <assembly path="LibraryCore\bin\Debug\Library.dll"/>
+    <assembly path="LibraryUI\bin\Debug\LibraryUI.dll"/>
+  </Config>
+  <Config name="Release">
+    <assembly path="LibraryCore\bin\Release\Library.dll"/>
+    <assembly path="LibraryUI\bin\Release\LibraryUI.dll"/>
+  </Config>
+</NUnitProject>
