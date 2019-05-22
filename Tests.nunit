@@ -1,11 +1,11 @@
 <NUnitProject>
   <Settings activeconfig="Debug"/>
   <Config name="Debug">
-    <assembly path="LibraryCore\bin\Debug\Library.dll"/>
-    <assembly path="LibraryUI\bin\Debug\LibraryUI.dll"/>
+    <assembly path="BDD.Boundaries\bin\Debug\BDD.Boundaries.dll"/>
+    <assembly path="TDD.Boundaries\bin\Debug\TDD.Boundaries.dll"/>
   </Config>
   <Config name="Release">
-    <assembly path="LibraryCore\bin\Release\Library.dll"/>
-    <assembly path="LibraryUI\bin\Release\LibraryUI.dll"/>
+    <assembly path="BDD.Boundaries\bin\Release\BDD.Boundaries.dll"/>
+    <assembly path="TDD.Boundaries\bin\Release\TDD.Boundaries.dll"/>
   </Config>
 </NUnitProject>
