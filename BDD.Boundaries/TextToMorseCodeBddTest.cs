@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace BDD.Boundaries
 {
@@ -9,9 +10,12 @@ namespace BDD.Boundaries
         [TestFixture]
         public class AppBTests
         {
-            private static readonly string CurrentDirectory = @"C:\Users\Wepsys\source\repos\TextToMorseCode\App\bin\Debug";
+            private static readonly string CurrentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
 
+            [TestCase("SOS", ". . .   - - -   . . .")]
             [TestCase("E", ".")]
+            [TestCase("HOLA", ". . . .   - - -   . - . .   . -")]
+            [TestCase("HoLa", ". . . .   - - -   . - . .   . -")]
             public void Given_Valid_Input_Should_Pass(string input, string output)
             {
                 using (Process sut = ReturnProcess(input))
@@ -19,6 +23,11 @@ namespace BDD.Boundaries
                     sut.Start();
 
                     string messageFromApp = sut.StandardOutput.ReadLine();
+
+                    do
+                    {
+                        Thread.Sleep(50);
+                    } while (!sut.HasExited);
 
                     Assert.That(messageFromApp, Is.EqualTo(output));
                     Assert.That(sut.ExitCode, Is.Zero);
