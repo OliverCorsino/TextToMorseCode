@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Core.Models;
+using NUnit.Framework;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
-using Core.Models;
-using Microsoft.SqlServer.Server;
-using NUnit.Framework;
 
 namespace TDD.Boundaries
 {
@@ -28,7 +26,6 @@ namespace TDD.Boundaries
         [Test]
         public void Given_No_Parameter_Input_Should_Pass()
         {
-            TextEncoder textEncoder = new TextEncoder();
             using (Process sut = ReturnProcess(string.Empty))
             {
                 sut.Start();
@@ -64,6 +61,34 @@ namespace TDD.Boundaries
             };
 
             return process;
+        }
+
+        [Test]
+        public void Given_Valid_Input_Flag_Should_Pass()
+        {
+            TextEncoder textEncoder = new TextEncoder();
+            using (Process sut = ReturnProcess("-b"))
+            {
+                sut.Start();
+
+                string messageFromApp = sut.StandardOutput.ReadLine();
+
+                do
+                {
+                    Thread.Sleep(50);
+                } while (!sut.HasExited);
+
+                Assert.That(messageFromApp, Is.EqualTo(string.Empty));
+                Assert.That(sut.ExitCode, Is.Zero);
+            }
+        }
+
+        [Test]
+        public void Given_Valid_Input_Flag_And_Message_Should_Pass()
+        {
+            TextEncoder textEncoder = new TextEncoder();
+
+            Assert.That("...|---|...", Is.EqualTo(textEncoder.GetMorseCode("-m SOS -b")));
         }
     }
 }

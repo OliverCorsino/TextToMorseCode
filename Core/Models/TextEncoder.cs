@@ -7,9 +7,8 @@ namespace Core.Models
     {
         private static readonly Dictionary<char, string> morseTable = new Dictionary<char, string>()
         {
-
             {'A',".-"},
-            { 'B',"-..."},
+            {'B',"-..."},
             {'C',"-.-."},
             {'D',"-.."},
             {'E',"."},
@@ -52,13 +51,24 @@ namespace Core.Models
             {
                 return input;
             }
-
-            string value = string.Empty;
-            input = input.ToUpper();
-            for (int i = 0; i < input.Length; i++)
+            if (input.Equals("-b"))
             {
-                value += morseTable[input[i]] + "|";
+                return string.Empty;
             }
+
+            string[] completeMessage = input.Split(' ');
+            string value = string.Empty;
+            string message = string.Empty;
+
+            for (int i = 0; i < completeMessage.Length; i++)
+            {
+                if (completeMessage[i].Equals("-m"))
+                {
+                    message = completeMessage[i + 1];
+                }
+                value += morseTable[message[i]] + "|";
+            }
+
             return RemoveLastChar(value);
         }
 
@@ -67,7 +77,6 @@ namespace Core.Models
             string StringResult = "";
             try
             {
-                
                 StringResult = Text.Remove(Text.Length - 1);
                 return StringResult;
             }
@@ -75,7 +84,6 @@ namespace Core.Models
             {
                 return StringResult;
             }
-            
         }
     }
 }

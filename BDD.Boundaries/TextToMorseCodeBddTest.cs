@@ -53,6 +53,43 @@ namespace BDD.Boundaries
 
                 return process;
             }
+            
+            [Test]
+            public void Given_Valid_Input_Flag_Should_Pass()
+            {
+                using (Process sut = ReturnProcess("-b"))
+                {
+                    sut.Start();
+
+                    string messageFromApp = sut.StandardOutput.ReadLine();
+
+                    do
+                    {
+                        Thread.Sleep(50);
+                    } while (!sut.HasExited);
+
+                    Assert.That(messageFromApp, Is.EqualTo(string.Empty));
+                    Assert.That(sut.ExitCode, Is.Zero);
+                }
+            }
+            [Test]
+            public void Given_Valid_Input_Flag_And_Message_Should_Pass()
+            {
+                using (Process sut = ReturnProcess("-m SOS -b"))
+                {
+                    sut.Start();
+
+                    string messageFromApp = sut.StandardOutput.ReadLine();
+
+                    do
+                    {
+                        Thread.Sleep(50);
+                    } while (!sut.HasExited);
+
+                    Assert.That(messageFromApp, Is.EqualTo("...|---|..."));
+                    Assert.That(sut.ExitCode, Is.Zero);
+                }
+            }
         }
     }
 }

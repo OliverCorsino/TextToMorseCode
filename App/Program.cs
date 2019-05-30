@@ -13,6 +13,15 @@ namespace App
                 return;
             }
 
+            foreach (var arg in args)
+            {
+                if (arg.ToLower().Contains("-b"))
+                {
+                    Console.Beep();
+                }
+            }
+
+
             TextEncoder textEncoder = new TextEncoder();
             Console.Out.WriteLine(textEncoder.GetMorseCode(args[0]));
         }
