@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Core.Models
 {
@@ -56,9 +57,25 @@ namespace Core.Models
             input = input.ToUpper();
             for (int i = 0; i < input.Length; i++)
             {
-                value += morseTable[input[i]] + "   ";
+                value += morseTable[input[i]] + "|";
             }
-            return value.Trim();
+            return RemoveLastChar(value);
+        }
+
+        public string RemoveLastChar(string Text)
+        {
+            string StringResult = "";
+            try
+            {
+                
+                StringResult = Text.Remove(Text.Length - 1);
+                return StringResult;
+            }
+            catch (Exception e)
+            {
+                return StringResult;
+            }
+            
         }
     }
 }

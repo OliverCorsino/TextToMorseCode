@@ -13,9 +13,9 @@ namespace BDD.Boundaries
             private static readonly string CurrentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
 
             [TestCase("E", ".")]
-            [TestCase("SOS", "...   ---   ...")]
-            [TestCase("HOLA", "....   ---   .-..   .-")]
-            [TestCase("HoLa", "....   ---   .-..   .-")]
+            [TestCase("SOS", "...|---|...")]
+            [TestCase("HOLA", "....|---|.-..|.-")]
+            [TestCase("HoLa", "....|---|.-..|.-")]
             public void Given_Valid_Input_Should_Pass(string input, string output)
             {
                 using (Process sut = ReturnProcess(input))
