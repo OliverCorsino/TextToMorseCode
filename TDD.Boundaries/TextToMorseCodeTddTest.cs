@@ -55,7 +55,7 @@ namespace TDD.Boundaries
                     Arguments = input,
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
-                    FileName = Path.Combine(CurrentDirectory, "App.exe"),
+                    FileName = Path.Combine(TestContext.CurrentContext.TestDirectory, "App.exe"),
                     RedirectStandardError = true,
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
